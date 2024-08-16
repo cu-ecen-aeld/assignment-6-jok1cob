@@ -1,0 +1,27 @@
+diff --git a/Makefile b/Makefile
+index c84484f..730f446 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,15 +1,15 @@
+-SRC=aesdsocket.c
+-TARGET=aesdsocket
+-OBJ=aesdsocket.o
+-CFLAGS= -g -Wall -Werror
+-CC=${CROSS_COMPILE}gcc
+-LIB=-lpthread -lrt
++SRC?=aesdsocket.c
++TARGET?=aesdsocket
++OBJ?=aesdsocket.o
++CFLAGS?= -g -Wall -Werror
++CC?=${CROSS_COMPILE}gcc
++TARGET_LDFLAGS?=-lpthread -lrt 
+ all : ${TARGET}
+ 
+ default : ${TARGET}
+ 
+ ${TARGET} : ${OBJ}
+-		${CC} -o ${CFLAGS} ${OBJ} ${LIB} -o ${TARGET}	
++		${CC} -o ${CFLAGS} ${OBJ} ${LDFLAGS} ${TARGET_LDFLAGS} -o ${TARGET}	
+ 
+ ${OBJ} : ${SRC}
+ 		${CC} -c ${SRC} ${CFLAGS} -o ${OBJ}
